@@ -1,0 +1,8 @@
+::1 - - [07/Mar/2016:16:12:47 +0000] "GET /login HTTP/1.1" 304 -
+::1 - - [07/Mar/2016:16:12:49 +0000] "GET /login HTTP/1.1" 304 -
+::1 - - [07/Mar/2016:16:12:50 +0000] "GET /login HTTP/1.1" 304 -
+::1 - - [07/Mar/2016:16:12:51 +0000] "GET / HTTP/1.1" 304 -
+::1 - - [07/Mar/2016:16:12:51 +0000] "GET /javascripts/wssocket.js HTTP/1.1" 304 -
+::1 - - [07/Mar/2016:16:12:51 +0000] "GET /javascripts/jquery-1.9.1.js HTTP/1.1" 304 -
+::1 - - [07/Mar/2016:16:12:56 +0000] "GET /service HTTP/1.1" 302 72
+::1 - - [07/Mar/2016:16:12:56 +0000] "GET /NotAuthorized HTTP/1.1" 200 265
