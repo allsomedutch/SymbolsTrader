@@ -44,13 +44,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //User Authentication and Authorization
 
 //User Authentication
-app.use(function(req, res, next) {
+/**app.use(function(req, res, next) {
   if (req.session && req.session.admin)
     res.locals.admin = true;
     next();
 
   //return res.redirect('/login');
-});
+});**/
 
 //User Authorization to REST API Routes
 var authorize = function(req, res, next) {

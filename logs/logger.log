@@ -1,9 +1,4 @@
-::ffff:127.0.0.1 - - [21/Apr/2016:15:57:47 +0000] "GET / HTTP/1.1" 200 434
-::ffff:127.0.0.1 - - [21/Apr/2016:15:57:47 +0000] "GET /javascripts/wssocket.js HTTP/1.1" 200 451
-::ffff:127.0.0.1 - - [21/Apr/2016:15:57:47 +0000] "GET /javascripts/jquery-1.9.1.js HTTP/1.1" 200 277976
-::ffff:127.0.0.1 - - [21/Apr/2016:15:57:49 +0000] "GET /favicon.ico HTTP/1.1" 500 1306
-::ffff:127.0.0.1 - - [21/Apr/2016:15:58:03 +0000] "GET / HTTP/1.1" 304 -
-::ffff:127.0.0.1 - - [21/Apr/2016:15:58:03 +0000] "GET /javascripts/jquery-1.9.1.js HTTP/1.1" 304 -
-::ffff:127.0.0.1 - - [21/Apr/2016:15:58:03 +0000] "GET /javascripts/wssocket.js HTTP/1.1" 304 -
-::ffff:127.0.0.1 - - [21/Apr/2016:15:58:03 +0000] "GET /favicon.ico HTTP/1.1" 500 1306
-::ffff:10.0.0.83 - - [21/Apr/2016:16:03:23 +0000] "POST /service/stocks HTTP/1.1" 500 1282
+::ffff:127.0.0.1 - - [21/Apr/2016:16:05:59 +0000] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [21/Apr/2016:16:05:59 +0000] "GET /javascripts/jquery-1.9.1.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [21/Apr/2016:16:05:59 +0000] "GET /javascripts/wssocket.js HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [21/Apr/2016:16:06:00 +0000] "GET /favicon.ico HTTP/1.1" 404 1281
