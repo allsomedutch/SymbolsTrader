@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var fs = require('fs');
+var path = require('path');
 var logger = require('morgan');
 var WebSocket = require('ws').Server;
 
