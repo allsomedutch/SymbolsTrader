@@ -1,8 +1,17 @@
 /**
  * Created by admin on 4/21/2016.
  */
+var express = require('express');
+var fs = require('fs');
+var logger = require('morgan');
 var WebSocket = require('ws').Server;
+
+var app = express();
 var ws = new WebSocket({port: '3001'}); //Set WebSocket Endpoint
+
+var logfile = fs.createWriteStream('../'+path.join(__dirname+'/logs/logger.log'), { flag : 'a' });
+app.use(logger('common', {stream : logfile}));
+
 var wsclients = []; //WebSocket Clients
 
 ws.on('connection', function connection(socket) {
@@ -177,7 +186,6 @@ function getUniqueId(url){
     return uid;
 }
 
-
 function startsWith(data, str){
     var status;
     str = String(str);
@@ -190,23 +198,28 @@ function startsWith(data, str){
     return status;
 }
 
-exports.processData = function (data){
-    console.log('[%s] RCVD DATA: %s', crtm(), data);
-    if(startsWith(data, 'skup')){
+exports.processData = function (req, res, next){
+    var dt = JSON.stringify(req.body);
+    logfile.write('['+crtm()+'] REST MSG: '+dt+'\r\n');
+    console.log('[%s] REST MSG RCVD: %s', crtm(), dt);
+
+    //next(stocksUpdate(String(dt.v))); //Get JSON object and get the value to the key 'v'
+    //console.log('[%s] RCVD DATA: %s', crtm(), data);
+    if(startsWith(dt, 'skup')){
         var ptn = '\bskup\W\W[A-Z0-9]*\W\W;';
-        var rs = data.match(ptn);
+        var rs = dt.match(ptn);
         if(rs === null){
-            sendMsg(data, ''); //send socket message to WS Endpoint
+            sendMsg(dt, ''); //send socket message to WS Endpoint
         }
     }
-    else if(startsWith(data, 'orup') || startsWith(data, 'trup') || startsWith(data, 'nwup') || startsWith(data, 'sapr') ||
-        startsWith(data, '<msg id=\"MSG\" >') || startsWith(data, '<msg ID=\"DPT') || startsWith(data, '\"ID\":\"DPT.') ||
-        startsWith(data, '<msg ID=\"SKPR.') || startsWith(data, '<msg ID=\"HSPR.')){
-        sendMsg(data, ''); //send socket message
+    else if(startsWith(dt, 'orup') || startsWith(dt, 'trup') || startsWith(dt, 'nwup') || startsWith(dt, 'sapr') ||
+        startsWith(dt, '<msg id=\"MSG\" >') || startsWith(dt, '<msg ID=\"DPT') || startsWith(dt, '\"ID\":\"DPT.') ||
+        startsWith(dt, '<msg ID=\"SKPR.') || startsWith(dt, '<msg ID=\"HSPR.')){
+        sendMsg(dt, ''); //send socket message
     }
-    else if(startsWith(data, '<msg id=\"MSG\" cid')){
-        var attr = data.documentElement.getAttribute('cid');
-        sendMsg(data, attr); //send socket message to WS Endpoint
+    else if(startsWith(dt, '<msg id=\"MSG\" cid')){
+        var attr = dt.documentElement.getAttribute('cid');
+        sendMsg(dt, attr); //send socket message to WS Endpoint
     }
     /**else{
     var atr = data.documentElement.getAttribute('cid');

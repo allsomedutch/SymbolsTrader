@@ -85,14 +85,6 @@ function crtm(){
   return String(currentTimeString);
 }
 
-//Business Logic for processing data from Consumed REST WebService Endpoint
-stocksUpdate = function(data){
-  logfile.write('['+crtm()+'] REST MSG: '+JSON.stringify(data)+'\r\n');
-  console.log('[%s] REST MSG: %s', crtm(), JSON.stringify(data));
-  ws.processData(data);
-  //processData(data);
-};
-
 // Pages & routes
 app.get('/', routes.home);
 app.get('/login', routes.login);
@@ -105,10 +97,7 @@ app.get('/NotFound', routes.notfound);
 app.all('/service', authorize);
 //app.get('/service', routes.notauth);
 //app.get('/service/stocks', routes.notauth);
-app.post('/service/stocks', function(req, res, next){
-  var dt = req.body;
-  next(stocksUpdate(String(dt.v))); //Get JSON object and get the value to the key 'v'
-});  //REST Routing for receiving real-time stock market data
+app.post('/service/stocks', ws.processData);  //REST Routing for receiving real-time stock market data
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
