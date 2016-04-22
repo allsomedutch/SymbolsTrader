@@ -10,7 +10,7 @@ var WebSocket = require('ws').Server;
 var app = express();
 var ws = new WebSocket({port: '3001'}); //Set WebSocket Endpoint
 
-var logfile = fs.createWriteStream('../'+path.join(__dirname+'/logs/logger.log'), { flag : 'a' });
+var logfile = fs.createWriteStream(path.join('./logs/logger.log'), { flag : 'a' });
 app.use(logger('common', {stream : logfile}));
 
 var wsclients = []; //WebSocket Clients
@@ -102,7 +102,7 @@ sendMsg = function(data, attr){
                     }
                 }
             }
-            else if(startsWith(data, 'sapr(') || startsWith(data, 'sdpr(')){
+            else if(startsWith(data, 'sapr') || startsWith(data, 'sdpr')){
                 for(var k in wsclients){
                     var vls = wsclients[k][1].split('-');
                     for (var j = 1; j < vls.length; j++) {
@@ -113,12 +113,12 @@ sendMsg = function(data, attr){
                     }
                 }
             }
-            else if(startsWith(data, 'skup(') || startsWith(data, 'trup(') || startsWith(data, 'nwup(') || startsWith(data, '<msg id=\"MSG')){
+            else if(startsWith(data, 'skup') || startsWith(data, 'trup') || startsWith(data, 'nwup') || startsWith(data, '<msg id=\"MSG')){
                 for(var k in wsclients){
                     wsclients[k][0].send(data.concat('|NSE1'));
                 }
             }
-            else if(startsWith(data, 'orup(')){
+            else if(startsWith(data, 'orup')){
                 for(var k in wsclients){
                     var vls = wsclients[k][1].split('-');
                     var ids = vls[0].split('\_');
@@ -199,8 +199,10 @@ function startsWith(data, str){
     return status;
 }
 
-exports.processData = function (req, res, next){
-    var dt = JSON.stringify(req.body);
+exports.processData = function (req, res){
+    var rd = req.body;
+    var dt = String(rd.v); //Get JSON object and get the value to the key 'v' in {"v" : "<value>"}
+
     logfile.write('['+crtm()+'] REST MSG: '+dt+'\r\n');
     console.log('[%s] REST MSG RCVD: %s', crtm(), dt);
 
@@ -228,4 +230,4 @@ exports.processData = function (req, res, next){
   }**/
 };
 
-module.exports = ws;
+//module.exports = ws;

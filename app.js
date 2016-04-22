@@ -36,7 +36,7 @@ app.use(session({
   }
 }));
 
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -103,6 +103,7 @@ app.post('/service/stocks', ws.processData);  //REST Routing for receiving real-
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+  logfile.write('['+crtm()+'] REST MSG: '+err.stack+'\r\n');
   console.log('%s - %s', crtm(), err.stack);
   //res.sendFile('404.html', {root: './public/'});
   next(err);
@@ -142,11 +143,13 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  logfile.write('['+crtm()+'] ERR MSG: '+err.stack+'\r\n');
+  console.log('%s - %s', crtm(), err.stack);
+  /**res.render('error', {
     title: 'Error Page!',
     message: err.message,
     error: {}
-  });
+  });**/
 });
 
 
