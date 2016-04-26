@@ -1,6 +1,13 @@
 /**
- * Created by admin on 4/21/2016.
+ * APP:       CUSTOMER WEB PORTAL (CWP)
+ * COMPANY:   Neulogic Solutions Limited
+ *
+ * MODULE:    WebSocket Endpoint Module
+ *
+ * DEVELOPER: Oladotun Sobande
+ * DATE:      26th April 2016
  */
+
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
@@ -10,8 +17,8 @@ var WebSocket = require('ws').Server;
 var app = express();
 var ws = new WebSocket({port: '3001'}); //Set WebSocket Endpoint
 
-var logfile = fs.createWriteStream(path.join('./logs/logger.log'), { flag : 'a' });
-app.use(logger('common', {stream : logfile}));
+var lff = fs.createWriteStream(path.join('logs/logger.log'), { flag : 'a' });
+app.use(logger('common', {stream : lff}));
 
 var wsclients = []; //WebSocket Clients
 
@@ -61,17 +68,18 @@ sendMsg = function(data, attr){
 
     var users = wsclients.length;
     if(users > 0){
+        var fstr = data.concat('|NSE1');
         if(attr !== ''){
             if(startsWith(data, '<msg id=\"MSG\" cid')){
                 for(var i in wsclients){
                     if(wsclients[i][1].match(attr) !== null)
-                        wsclients[i][0].send(data.concat('|NSE1'));
+                        wsclients[i][0].send(fstr);
                 }
             }
             else{
                 for(var i in wsclients){
                     if(startsWith(data, attr))
-                        wsclients[i][0].send(data.concat('|NSE1'));
+                        wsclients[i][0].send(fstr);
                 }
             }
         }
@@ -84,7 +92,7 @@ sendMsg = function(data, attr){
 
                     for (var j = 1; j < vls.length; j++) {
                         if (vls[j] === dets[1])
-                            wsclients[k][0].send(data.concat('|NSE1'));
+                            wsclients[k][0].send(fstr);
                     }
                 }
             }
@@ -98,7 +106,7 @@ sendMsg = function(data, attr){
                     var vls = wsclients[k][1].split('-');
                     for (var j = 1; j < vls.length; j++) {
                         if (vls[j] === stid)
-                            wsclients[k][0].send(data.concat('|NSE1'));
+                            wsclients[k][0].send(fstr);
                     }
                 }
             }
@@ -109,13 +117,13 @@ sendMsg = function(data, attr){
                         var ctt = data.split('\'');
                         var sid = ctt[1];
                         if (vls[j] === sid)
-                            wsclients[k][0].send(data.concat('|NSE1'));
+                            wsclients[k][0].send(fstr);
                     }
                 }
             }
             else if(startsWith(data, 'skup') || startsWith(data, 'trup') || startsWith(data, 'nwup') || startsWith(data, '<msg id=\"MSG')){
                 for(var k in wsclients){
-                    wsclients[k][0].send(data.concat('|NSE1'));
+                    wsclients[k][0].send(fstr);
                 }
             }
             else if(startsWith(data, 'orup')){
@@ -125,7 +133,7 @@ sendMsg = function(data, attr){
                     var val = data.split('\'');
 
                     if(ids[1] === val[1])
-                        wsclients[k][0].send(data.concat('|NSE1'));
+                        wsclients[k][0].send(fstr);
                 }
             }
         }
@@ -199,12 +207,10 @@ function startsWith(data, str){
     return status;
 }
 
-exports.processData = function (req, res){
-    var rd = req.body;
-    var dt = String(rd.v); //Get JSON object and get the value to the key 'v' in {"v" : "<value>"}
-
-    logfile.write('['+crtm()+'] REST MSG: '+dt+'\r\n');
-    console.log('[%s] REST MSG RCVD: %s', crtm(), dt);
+exports.processData = function (data){
+    console.log('[%s] WS MSG RCVD: %s', crtm(), JSON.stringify(data));
+    //var rd = req.body;
+    var dt = String(data.v); //Get JSON object and get the value to the key 'v' in {"v" : "<value>"}
 
     //next(stocksUpdate(String(dt.v))); //Get JSON object and get the value to the key 'v'
     //console.log('[%s] RCVD DATA: %s', crtm(), data);

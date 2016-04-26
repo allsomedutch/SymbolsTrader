@@ -1,3 +1,14 @@
+/**
+ * APP:       CUSTOMER WEB PORTAL (CWP)
+ * COMPANY:   Neulogic Solutions Limited
+ *
+ * MODULE:    CWP Core Module
+ *
+ * DEVELOPER: Oladotun Sobande
+ * DATE:      26th April 2016
+ */
+
+//NodeJS Core Modules in /node_modules
 var express = require('express');
 var path = require('path');
 //var favicon = require('serve-favicon');
@@ -7,11 +18,13 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var session = require('express-session');
 //var jade = require('jade');
-var ws = require('./modules/ws');
 
+//User-Defined Modules in /modules
+var ath = require('./modules/auth'); //Import Authentication Module
+var rst = require('./modules/rws'); //Import REST Web Service Endpoint Module
+
+//Basic Page Route
 var routes = require('./routes/users');
-//var routes = require('./routes/users');
-//var users = require('./routes/index');
 
 var app = express();
 
@@ -97,14 +110,14 @@ app.get('/NotFound', routes.notfound);
 app.all('/service', authorize);
 //app.get('/service', routes.notauth);
 //app.get('/service/stocks', routes.notauth);
-app.post('/service/stocks', ws.processData);  //REST Routing for receiving real-time stock market data
+app.post('/service/stocks', rst.isWSData);  //REST Routing for receiving real-time stock market data
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   logfile.write('['+crtm()+'] REST MSG: '+err.stack+'\r\n');
-  console.log('%s - %s', crtm(), err.stack);
+  //console.log('%s - %s', crtm(), err.stack);
   //res.sendFile('404.html', {root: './public/'});
   next(err);
 });
