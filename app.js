@@ -41,6 +41,7 @@ app.use(cookieParser('NP-CHF83RJRG93JERRU97'));
 app.use(session({
   secret: 'NP-SDSF83R3JG93JG394',
   saveUninitialized: true,
+  store: new RedisStore({ host: '127.0.0.1', port: 6379 }),
   resave: true,
   cookie: {
     path: '/',
@@ -105,6 +106,15 @@ app.post('/login', routes.authenticate);
 app.get('/logout', routes.logout);
 app.get('/NotAuthorized', routes.notauth);
 app.get('/NotFound', routes.notfound);
+app.get('/', function(req, res){
+  if(req.session.counter){
+    req.session.counter += 1;
+  }
+  else{
+    req.session.counter = 1;
+  }
+  console.log('Session ID: '+req.sessionID+' | User Counter: '+req.session.counter);
+});
 
 //REST API Routes
 app.all('/service', authorize);
