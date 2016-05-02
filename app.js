@@ -41,7 +41,7 @@ app.use(cookieParser('NP-CHF83RJRG93JERRU97'));
 app.use(session({
   secret: 'NP-SDSF83R3JG93JG394',
   saveUninitialized: true,
-  store: new RedisStore({ host: '127.0.0.1', port: 6379 }),
+  store: new RedisStore({ host: '127.0.0.1', port: 6379 }),  //Store session details in Redis
   resave: true,
   cookie: {
     path: '/',
