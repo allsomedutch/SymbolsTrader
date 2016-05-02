@@ -21,6 +21,7 @@
     "good": "latest",
     "good-console": "latest",
     "good-file": "latest",
-    "hapi-server-session": "latest"
+    "hapi-server-session": "latest",
+    "connect-redis":"3.0.2"
   }
 }
