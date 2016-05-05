@@ -10,6 +10,7 @@
 
 /* GET users listing. */
 exports.home = function(req, res){
+  console.log('Session ID: '+req.session.id);
   res.sendFile('index.html', {root: './public/'});
 };
 

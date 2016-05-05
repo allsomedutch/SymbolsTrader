@@ -16,7 +16,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var redis = require('redis');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 //var jade = require('jade');
 
 //User-Defined Modules in /modules
@@ -27,6 +29,8 @@ var rst = require('./modules/rws'); //Import REST Web Service Endpoint Module
 var routes = require('./routes/users');
 
 var app = express();
+
+var usr = redis.createClient(); //Configure Redis client
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +45,7 @@ app.use(cookieParser('NP-CHF83RJRG93JERRU97'));
 app.use(session({
   secret: 'NP-SDSF83R3JG93JG394',
   saveUninitialized: true,
-  store: new RedisStore({ host: '127.0.0.1', port: 6379 }),  //Store session details in Redis
+  store: new RedisStore({ host: '10.0.0.83', port: 6379, client: usr }),  //Store session details in Redis
   resave: true,
   cookie: {
     path: '/',
@@ -106,7 +110,7 @@ app.post('/login', routes.authenticate);
 app.get('/logout', routes.logout);
 app.get('/NotAuthorized', routes.notauth);
 app.get('/NotFound', routes.notfound);
-app.get('/', function(req, res){
+/**app.get('/', function(req, res){
   if(req.session.counter){
     req.session.counter += 1;
   }
@@ -114,7 +118,7 @@ app.get('/', function(req, res){
     req.session.counter = 1;
   }
   console.log('Session ID: '+req.sessionID+' | User Counter: '+req.session.counter);
-});
+});**/
 
 //REST API Routes
 app.all('/service', authorize);
