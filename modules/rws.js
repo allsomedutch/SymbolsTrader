@@ -27,6 +27,21 @@ exports.isWSData = function(req, res){
     ws.processData(dt);
 };
 
+exports.getModules = function(req, res){
+    console.log('[%s] REQ.: Portal Modules', crtm());
+    var mdl = [
+        { name: 'Home', id: 'home' },
+        { name: 'People', id: 'people' },
+        { name: 'Library', id: 'library' },
+        { name: 'Graphics', id: 'graphics' },
+        { name: 'Performance', id: 'performance' }
+    ];
+    res.set('Content-type','application/json');
+    res.send(mdl);
+    //res.sendFile(mdl);
+    console.log('[%s] RES. DATA SENT: %s', crtm(), JSON.stringify(mdl));
+};
+
 function crtm(){
     var currentTime = new Date();
     var currentHours = currentTime.getHours();

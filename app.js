@@ -57,6 +57,11 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //=====================================================================================
 //User Authentication and Authorization
@@ -121,7 +126,8 @@ app.get('/NotFound', routes.notfound);
 });**/
 
 //REST API Routes
-app.all('/service', authorize);
+//app.all('/service', authorize);
+app.get('/service/modules', rst.getModules);
 //app.get('/service', routes.notauth);
 //app.get('/service/stocks', routes.notauth);
 app.post('/service/stocks', rst.isWSData);  //REST Routing for receiving real-time stock market data
