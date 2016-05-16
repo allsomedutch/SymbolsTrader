@@ -1,5 +1,5 @@
-::ffff:10.0.0.83 - - [13/May/2016:14:08:56 +0000] "GET /service/modules?callback=jQuery213021868054558177197_1463148536406&_=1463148536407 HTTP/1.1" 200 173
-[3:08:57 PM] ERR MSG: Error: Can't set headers after they are sent.
+::ffff:10.0.0.83 - - [15/May/2016:14:12:03 +0000] "GET /service/modules HTTP/1.1" 200 219
+[3:12:04 PM] ERR MSG: Error: Can't set headers after they are sent.
     at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:350:11)
     at ServerResponse.header (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:718:10)
     at ServerResponse.send (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:163:12)
@@ -10,32 +10,8 @@
     at tryRender (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\application.js:639:10)
     at EventEmitter.render (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\application.js:591:3)
     at ServerResponse.render (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:961:7)
-::ffff:10.0.0.83 - - [13/May/2016:14:09:25 +0000] "GET /service/modules HTTP/1.1" 304 -
-[3:09:25 PM] ERR MSG: Error: Can't set headers after they are sent.
-    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:350:11)
-    at ServerResponse.header (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:718:10)
-    at ServerResponse.contentType (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:551:15)
-    at ServerResponse.send (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:138:14)
-    at done (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:957:10)
-    at Object.exports.renderFile (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\jade\lib\index.js:374:12)
-    at View.exports.__express [as engine] (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\jade\lib\index.js:417:11)
-    at View.render (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\view.js:126:8)
-    at tryRender (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\application.js:639:10)
-    at EventEmitter.render (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\application.js:591:3)
-::ffff:10.0.0.83 - - [13/May/2016:14:09:42 +0000] "GET /service/modules HTTP/1.1" 304 -
-[3:09:42 PM] ERR MSG: Error: Can't set headers after they are sent.
-    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:350:11)
-    at ServerResponse.header (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:718:10)
-    at ServerResponse.contentType (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:551:15)
-    at ServerResponse.send (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:138:14)
-    at done (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:957:10)
-    at Object.exports.renderFile (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\jade\lib\index.js:374:12)
-    at View.exports.__express [as engine] (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\jade\lib\index.js:417:11)
-    at View.render (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\view.js:126:8)
-    at tryRender (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\application.js:639:10)
-    at EventEmitter.render (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\application.js:591:3)
-::ffff:10.0.0.83 - - [13/May/2016:16:09:42 +0000] "GET /service/modules HTTP/1.1" 304 -
-[5:09:42 PM] ERR MSG: Error: Can't set headers after they are sent.
+::ffff:10.0.0.83 - - [15/May/2016:14:22:56 +0000] "GET /service/modules HTTP/1.1" 304 -
+[3:22:56 PM] ERR MSG: Error: Can't set headers after they are sent.
     at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:350:11)
     at ServerResponse.header (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:718:10)
     at ServerResponse.contentType (c:\Users\admin\Documents\dotun\WebstormProjects\Trader\node_modules\express\lib\response.js:551:15)

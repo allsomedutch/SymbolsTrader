@@ -30,11 +30,12 @@ exports.isWSData = function(req, res){
 exports.getModules = function(req, res){
     console.log('[%s] REQ.: Portal Modules', crtm());
     var mdl = [
-        { name: 'Home', id: 'home' },
-        { name: 'People', id: 'people' },
-        { name: 'Library', id: 'library' },
-        { name: 'Graphics', id: 'graphics' },
-        { name: 'Performance', id: 'performance' }
+        { name: 'Dashboard', id: 'dashboard' },
+        { name: 'Cash Accounts', id: 'cashAccount' },
+        { name: 'Equities', id: 'equities' },
+        { name: 'Loans', id: 'loans' },
+        { name: 'Deposits', id: 'deposits' },
+        { name: 'Profile', id: 'profile' }
     ];
     res.set('Content-type','application/json');
     res.send(mdl);
