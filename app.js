@@ -18,7 +18,11 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var redis = require('redis');
 var session = require('express-session');
+var crypto = require('crypto')
 var RedisStore = require('connect-redis')(session);
+
+var obj = JSON.parse(fs.readFileSync('defaults.json'));
+console.log("Default: "+obj.redi);
 //var jade = require('jade');
 
 //User-Defined Modules in /modules
@@ -27,11 +31,33 @@ var rst = require('./modules/rws'); //Import REST Web Service Endpoint Module
 
 //Basic Page Route
 var routes = require('./routes/users');
+var hashname = "tutpoint";
 
 var app = express();
 
 var usr = redis.createClient(); //Configure Redis client
-
+usr.on('connect', function(){
+  var dl = crypto.randomBytes(24).toString('hex');
+  console.log('Connected to Redis Server - Gen. Val: '+dl);
+});
+usr.on('error', function(){
+  console.log('Not Connected to Redis Server!');
+});
+/**usr.hset('tutpoint', 'lang', 'C#', function(err, rep){
+  console.log('Hash:tutpoint - lang added | reply:'+rep);
+});
+usr.hkeys(hashname, function(err, rep){
+  console.log("Keys: "+rep.length);
+  var val = "lang";
+  rep.forEach(function(dt, i){
+    if(dt === val){
+      usr.del(dt, function(err, rep){
+        console.log('Hash:tutpoint | reply:'+rep);
+      });
+    }
+  });
+  //console.log('Redis: Hash tutpoint - '+JSON.stringify(rep));
+});**/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
