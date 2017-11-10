@@ -1,6 +1,4 @@
 /**
- * APP:       CUSTOMER WEB PORTAL (CWP)
- * COMPANY:   Neulogic Solutions Limited
  *
  * MODULE:    REST Web Service Endpoint Module
  *
