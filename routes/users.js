@@ -1,7 +1,4 @@
 /**
- * APP:       CUSTOMER WEB PORTAL (CWP)
- * COMPANY:   Neulogic Solutions Limited
- *
  * MODULE:    Basic HTML Page Router
  *
  * DEVELOPER: Oladotun Sobande
