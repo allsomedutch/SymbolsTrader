@@ -1,10 +1,9 @@
 /*
- * Main JS Script for Symbols Trader
- * SYMBOLS TRADER
+ * Main JS Script for Trader
+ * TRADER
  * 
  * Author:               Oladotun Sobande
  * Last Date Modified:   8th October 2015
- * Neulogic Solutions Limited
  * 
  */
 
