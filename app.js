@@ -1,7 +1,4 @@
 /**
- * APP:       CUSTOMER WEB PORTAL (CWP)
- * COMPANY:   Neulogic Solutions Limited
- *
  * MODULE:    CWP Core Module
  *
  * DEVELOPER: Oladotun Sobande
