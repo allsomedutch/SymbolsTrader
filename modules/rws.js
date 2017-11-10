@@ -1,5 +1,4 @@
 /**
- *
  * MODULE:    REST Web Service Endpoint Module
  *
  * DEVELOPER: Oladotun Sobande
